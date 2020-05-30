@@ -27,7 +27,9 @@ import Component from 'vue-class-component';
 
 @Component
 export default class Index extends Vue {
-  private start() {}
+  private start() {
+    this.$router.push({ name: 'videos' });
+  }
 }
 </script>
 

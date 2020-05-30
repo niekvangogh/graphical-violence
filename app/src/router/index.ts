@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
 import Index from "../views/index.vue";
-import Video from "../views/video.vue";
+import Videos from "../views/videos.vue";
 import NDA from "../views/nda.vue";
 
 Vue.use(VueRouter);
@@ -13,9 +13,9 @@ const routes: Array<RouteConfig> = [
     component: Index
   },
   {
-    path: '/video/:id',
-    name: 'video',
-    component: Video,
+    path: '/videos',
+    name: 'videos',
+    component: Videos,
   },
   {
     path: '/nda',

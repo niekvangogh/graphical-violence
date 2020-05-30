@@ -7,7 +7,9 @@
 
       <div class="videos">
         <div class="video" v-for="(video, index) in videoQueue" :key="video">
-          <video width="100%" :src="video">{{ index }}</video>
+          <video width="100%" :class="{ 'currently-playing': index === 0, video }" :src="video">
+            {{ index }}
+          </video>
         </div>
       </div>
 
@@ -16,8 +18,12 @@
           <button>?</button>
         </div>
         <div class="action-buttons">
-          <button class="action-button delete">❌</button>
-          <button class="action-button accept" @click="publish">✅</button>
+          <button class="action-button delete" :disabled="isVideoPlaying" @click="deleteVideo">
+            ❌
+          </button>
+          <button class="action-button accept" :disabled="isVideoPlaying" @click="publishVideo">
+            ✅
+          </button>
         </div>
       </div>
     </div>
@@ -29,24 +35,60 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 
 @Component
-export default class Video extends Vue {
+export default class Videos extends Vue {
   private videos = [
-    '/assets/videos/video1.mp4',
     '/assets/videos/video2.mp4',
+    '/assets/videos/video1.mp4',
     '/assets/videos/video3.mp4',
   ];
 
+  private isVideoPlaying: boolean = false;
+
   private get videoQueue() {
-    return this.videos;
+    return this.videos.slice(0, 3);
   }
 
-  private publish() {
-    const publishedVideo = this.videos[0];
+  private getCurrentVideo(): HTMLVideoElement {
+    return document.getElementsByClassName('currently-playing')[0] as HTMLVideoElement;
+  }
+
+  private publishVideo() {
     this.videos.splice(0, 1);
-    // this.videos.push('/assets/videos/video1.mp4');
+    this.nextVideo();
   }
 
-  private startVideo() {}
+  private deleteVideo() {
+    this.videos.splice(0, 1);
+    this.nextVideo();
+  }
+
+  private nextVideo() {
+    setTimeout(() => {
+      this.playVideo();
+    }, 500);
+  }
+
+  private playVideo() {
+    const video = this.getCurrentVideo();
+    if (!video) {
+      this.$router.push({ name: 'nda' });
+      return;
+    }
+    this.isVideoPlaying = true;
+    video.play();
+    video.onended = () => this.onVideoEnd();
+  }
+
+  private onVideoEnd() {
+    this.isVideoPlaying = false;
+    const video = this.getCurrentVideo();
+  }
+
+  private mounted() {
+    setTimeout(() => {
+      this.playVideo();
+    });
+  }
 }
 </script>
 
