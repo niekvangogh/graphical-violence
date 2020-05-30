@@ -27,9 +27,7 @@ import Component from 'vue-class-component';
 
 @Component
 export default class Index extends Vue {
-  private start() {
-    
-  }
+  private start() {}
 }
 </script>
 
@@ -42,7 +40,6 @@ export default class Index extends Vue {
 
 .wrapper {
   padding: 130px 100px;
-  color: white;
   text-align: center;
 
   .title {
