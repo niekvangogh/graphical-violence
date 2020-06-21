@@ -24,9 +24,15 @@
 <script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
+import { Socket } from 'vue-socket.io-extended';
 
 @Component
 export default class Index extends Vue {
+  @Socket()
+  connect() {
+    console.log('CONNECTED');
+  }
+
   private start() {
     this.$router.push({ name: 'videos' });
   }

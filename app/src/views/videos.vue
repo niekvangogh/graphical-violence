@@ -6,8 +6,12 @@
       </div>
 
       <div class="videos">
-        <div class="video" v-for="(video, index) in videoQueue" :key="video">
-          <video width="100%" :class="{ 'currently-playing': index === 0, video }" :src="video">
+        <div class="video" v-for="(video, index) in videoQueue" :key="video.id">
+          <video
+            width="100%"
+            :class="{ 'currently-playing': index === 0, video: video.path }"
+            :src="video.path"
+          >
             {{ index }}
           </video>
         </div>
@@ -37,9 +41,18 @@ import Component from 'vue-class-component';
 @Component
 export default class Videos extends Vue {
   private videos = [
-    '/assets/videos/video2.mp4',
-    '/assets/videos/video1.mp4',
-    '/assets/videos/video3.mp4',
+    {
+      path: '/assets/videos/video2.mp4',
+      id: 2,
+    },
+    {
+      path: '/assets/videos/video1.mp4',
+      id: 1,
+    },
+    {
+      path: '/assets/videos/video3.mp4',
+      id: 3,
+    },
   ];
 
   private isVideoPlaying: boolean = false;
@@ -53,12 +66,20 @@ export default class Videos extends Vue {
   }
 
   private publishVideo() {
-    this.videos.splice(0, 1);
-    this.nextVideo();
+    this.finish(true);
   }
 
   private deleteVideo() {
-    this.videos.splice(0, 1);
+    this.finish(false);
+  }
+
+  private finish(publish: boolean) {
+    const video: any = this.videos.splice(0, 1)[0];
+
+    this.$socket.client.emit('submit_video', {
+      id: video.id,
+      publish,
+    });
     this.nextVideo();
   }
 
