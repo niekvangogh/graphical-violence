@@ -20,11 +20,25 @@
 <script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
+import { Socket } from 'vue-socket.io-extended';
 
 @Component
 export default class Index extends Vue {
   private start() {
     this.$router.push({ name: 'index' });
+  }
+
+  @Socket()
+  connect() {
+    this.$socket.client.emit('play_video', {
+      id: 'end',
+    });
+  }
+
+  mounted() {
+    this.$socket.client.emit('play_video', {
+      id: 'end',
+    });
   }
 }
 </script>

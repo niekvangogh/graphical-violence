@@ -31,6 +31,15 @@ export default class Index extends Vue {
   @Socket()
   connect() {
     console.log('CONNECTED');
+    this.$socket.client.emit('play_video', {
+      id: 'HOMEloop',
+    });
+  }
+
+  mounted() {
+    this.$socket.client.emit('play_video', {
+      id: 'HOMEloop',
+    });
   }
 
   private start() {

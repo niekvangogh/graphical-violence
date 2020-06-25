@@ -19,9 +19,18 @@ export default class Index extends Vue {
   @Socket("play_video")
   onUpdate(videoInfo: any) {
     console.log(videoInfo);
-    const dir: string = videoInfo.publish ? "keep" : "delete";
-    this.playingVideo = `/assets/videos/${dir}/${videoInfo.id}.mp4`;
+    let dir: string = "/blurred";
+    if (videoInfo.hasOwnProperty("publish")) {
+      dir = videoInfo.publish ? "/keep" : "/delete";
+    }
+
+    this.playingVideo = `/assets/videos${dir}/${videoInfo.id}.mp4`;
     this.$forceUpdate();
   }
 }
 </script>
+<style lang="scss">
+body {
+  background: black;
+}
+</style>

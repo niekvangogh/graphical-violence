@@ -97,6 +97,9 @@ export default class Videos extends Vue {
     }
     this.isVideoPlaying = true;
     video.play();
+    this.$socket.client.emit('play_video', {
+      id: this.videoQueue[0].id,
+    });
     video.onended = () => this.onVideoEnd();
   }
 
