@@ -22,10 +22,18 @@
           <button>?</button>
         </div>
         <div class="action-buttons">
-          <button class="action-button delete" :disabled="isVideoPlaying" @click="deleteVideo">
+          <button
+            class="action-button delete"
+            :disabled="isVideoPlaying || hasVoted"
+            @click="deleteVideo"
+          >
             ❌
           </button>
-          <button class="action-button accept" :disabled="isVideoPlaying" @click="publishVideo">
+          <button
+            class="action-button accept"
+            :disabled="isVideoPlaying || hasVoted"
+            @click="publishVideo"
+          >
             ✅
           </button>
         </div>
@@ -37,6 +45,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
+import { Socket } from 'vue-socket.io-extended';
 
 @Component
 export default class Videos extends Vue {
@@ -56,6 +65,8 @@ export default class Videos extends Vue {
   ];
 
   private isVideoPlaying: boolean = false;
+  private hasVoted: boolean = false;
+  private canGoNext: boolean = false;
 
   private get videoQueue() {
     return this.videos.slice(0, 3);
@@ -75,18 +86,21 @@ export default class Videos extends Vue {
 
   private finish(publish: boolean) {
     const video: any = this.videos.splice(0, 1)[0];
+    this.canGoNext = true;
+    this.hasVoted = true;
 
     this.$socket.client.emit('submit_video', {
       id: video.id,
       publish,
     });
-    this.nextVideo();
   }
 
+  @Socket('next_video')
   private nextVideo() {
-    setTimeout(() => {
+    if (this.canGoNext) {
       this.playVideo();
-    }, 500);
+      this.canGoNext = false;
+    }
   }
 
   private playVideo() {
@@ -95,6 +109,8 @@ export default class Videos extends Vue {
       this.$router.push({ name: 'nda' });
       return;
     }
+
+    this.hasVoted = false;
     this.isVideoPlaying = true;
     video.play();
     this.$socket.client.emit('play_video', {
@@ -105,6 +121,7 @@ export default class Videos extends Vue {
 
   private onVideoEnd() {
     this.isVideoPlaying = false;
+    this.hasVoted = false;
     const video = this.getCurrentVideo();
   }
 

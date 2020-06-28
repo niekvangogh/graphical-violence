@@ -12,6 +12,10 @@ io.on("connection", (client) => {
       id: event.id,
     });
   });
+
+  client.on("next_video", (event) => {
+    io.emit("next_video");
+  });
 });
 
 io.listen(3000);

@@ -1,5 +1,13 @@
 <template>
-  <video autoplay no-controls :src="playingVideo"></video>
+  <div>
+    <video
+      id="video"
+      autoplay
+      no-controls
+      :src="playingVideo"
+      :loop="loop"
+    ></video>
+  </div>
 </template>
 
 <script lang="ts">
@@ -9,7 +17,8 @@ import { Socket } from "vue-socket.io-extended";
 
 @Component
 export default class Index extends Vue {
-  private playingVideo: string = "/assets/videos/keep/1.mp4";
+  private playingVideo: string | null = null;
+  private loop: boolean = false;
 
   @Socket()
   connect() {
@@ -24,9 +33,26 @@ export default class Index extends Vue {
       dir = videoInfo.publish ? "/keep" : "/delete";
     }
 
-    this.playingVideo = `/assets/videos${dir}/${videoInfo.id}.mp4`;
+    this.playingVideo = "";
+    this.$nextTick(() => {
+      this.playingVideo = `/assets/videos${dir}/${videoInfo.id}.mp4`;
+    });
     this.$forceUpdate();
   }
+
+  private get video(): HTMLVideoElement {
+    return document.getElementById("video") as HTMLVideoElement;
+  }
+
+  private mounted() {
+    const video = this.video;
+    video.onended = () => {
+      console.log("ended?");
+      this.$socket.client.emit("next_video");
+    };
+  }
+
+  // next_video
 }
 </script>
 <style lang="scss">

@@ -36,6 +36,13 @@ export default class Index extends Vue {
     });
   }
 
+  @Socket('next_video')
+  private nextVideo() {
+    this.$socket.client.emit('play_video', {
+      id: 'HOMEloop',
+    });
+  }
+
   mounted() {
     this.$socket.client.emit('play_video', {
       id: 'HOMEloop',
