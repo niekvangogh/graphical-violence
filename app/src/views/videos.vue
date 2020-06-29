@@ -72,10 +72,6 @@ export default class Videos extends Vue {
     return document.getElementsByClassName('currently-playing')[0] as HTMLVideoElement;
   }
 
-  private get getCurrentTime(): number {
-    return this.getCurrentVideo().currentTime;
-  }
-
   private publishVideo() {
     this.finish(true);
   }

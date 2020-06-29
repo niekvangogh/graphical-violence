@@ -3,3 +3,19 @@
 body {
     font-family: "Open Sans", sans-serif;
 }
+
+@font-face {
+    font-family: Monument Extended Regular;
+    src: url("/fonts/Monument\ Extended\ Regular\ 400.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: Monument Extended Bold;
+    font-weight: 800;
+    src: url("/fonts/Monument\ Extended\ Ultrabold\ 800.ttf") format("truetype");
+}
+
+h1 {
+    font-family: Monument Extended Bold;
+    font-weight: 800;
+}

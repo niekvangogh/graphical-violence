@@ -67,9 +67,9 @@ export default class Index extends Vue {
   text-align: center;
 
   .title {
-    font-size: 60px;
+    font-size: 45px;
     font-weight: 700;
-    line-height: 70px;
+    line-height: 45px;
     margin-bottom: 90px;
   }
 
@@ -87,7 +87,10 @@ export default class Index extends Vue {
 
 .footer-buttons {
   margin-top: 100px;
+
   button {
+    font-family: Monument Extended Regular;
+
     border-radius: 10px;
     padding: 35px 50px;
     border: 0;
