@@ -2,7 +2,7 @@
   <div class="background">
     <div class="wrapper">
       <div class="progress-bar">
-        <div class="indicator"></div>
+        <div class="indicator" :style="{ width: progress + '%' }"></div>
       </div>
 
       <div class="videos">
@@ -63,6 +63,7 @@ export default class Videos extends Vue {
   private isVideoPlaying: boolean = false;
   private hasVoted: boolean = false;
   private canGoNext: boolean = false;
+  private progress: number = 0;
 
   private get videoQueue() {
     return this.videos.slice(0, 3);
@@ -108,10 +109,25 @@ export default class Videos extends Vue {
 
     this.hasVoted = false;
     this.isVideoPlaying = true;
+    this.progress = 0;
+
     video.play();
+
     this.$socket.client.emit('play_video', {
       id: this.videoQueue[0].id,
     });
+
+    let count = 0;
+
+    video.ontimeupdate = (event) => {
+      let currentTime = event.timeStamp;
+      var totalPlayed = 0;
+      let played = video.played;
+      for (var i = 0; i < played.length; i++) {
+        totalPlayed += played.end(i) - played.start(i);
+        this.progress = (totalPlayed / video.duration) * 100;
+      }
+    };
     video.onended = () => this.onVideoEnd();
   }
 
