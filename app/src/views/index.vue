@@ -50,7 +50,7 @@ export default class Index extends Vue {
   }
 
   private start() {
-    this.$router.push({ name: 'videos' });
+    this.$router.push({ name: 'videos', params: { index: '0' } });
   }
 }
 </script>

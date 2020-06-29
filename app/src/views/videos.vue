@@ -19,7 +19,7 @@
 
       <div class="buttons">
         <div class="help-button">
-          <div class="help"></div>
+          <div class="help" @click="$router.push({ name: 'help' })"></div>
         </div>
         <div class="action-buttons">
           <button
@@ -137,10 +137,18 @@ export default class Videos extends Vue {
     const video = this.getCurrentVideo();
   }
 
+  private beforeMount() {
+    const index = +this.$route.params.index;
+    if (index == 0) {
+      return;
+    }
+    this.videos = this.videos.splice(+index, +index);
+  }
+
   private mounted() {
     setTimeout(() => {
       this.playVideo();
-    });
+    }, 500);
   }
 }
 </script>
