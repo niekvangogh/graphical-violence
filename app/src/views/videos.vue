@@ -83,6 +83,7 @@ export default class Videos extends Vue {
 
   private finish(publish: boolean) {
     const video: any = this.videos.splice(0, 1)[0];
+    this.$router.push({ name: 'videos', params: { index: video.id } });
     this.canGoNext = true;
     this.hasVoted = true;
 
