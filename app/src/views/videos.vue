@@ -19,23 +19,19 @@
 
       <div class="buttons">
         <div class="help-button">
-          <button>?</button>
+          <div class="help"></div>
         </div>
         <div class="action-buttons">
           <button
             class="action-button delete"
             :disabled="isVideoPlaying || hasVoted"
             @click="deleteVideo"
-          >
-            ❌
-          </button>
+          ></button>
           <button
             class="action-button accept"
             :disabled="isVideoPlaying || hasVoted"
             @click="publishVideo"
-          >
-            ✅
-          </button>
+          ></button>
         </div>
       </div>
     </div>
@@ -74,6 +70,10 @@ export default class Videos extends Vue {
 
   private getCurrentVideo(): HTMLVideoElement {
     return document.getElementsByClassName('currently-playing')[0] as HTMLVideoElement;
+  }
+
+  private get getCurrentTime(): number {
+    return this.getCurrentVideo().currentTime;
   }
 
   private publishVideo() {
@@ -135,13 +135,13 @@ export default class Videos extends Vue {
 
 <style lang="scss" scoped>
 .background {
-  background-image: url('../assets/images/background1.png');
+  background-image: url('../assets/images/background2.png');
   background-size: contain;
   height: 100%;
 }
 
 .wrapper {
-  padding: 40px 60px;
+  padding: 5px 60px;
 
   .progress-bar {
     background-color: #896d6d;
@@ -160,8 +160,8 @@ export default class Videos extends Vue {
 
   .videos {
     position: relative;
-    margin-top: 100px;
-    margin-bottom: 50px;
+    margin-top: 160px;
+    margin-bottom: 35px;
     height: 400px;
 
     .video {
@@ -191,12 +191,13 @@ export default class Videos extends Vue {
 
   .buttons {
     .help-button {
-      text-align: center;
-      button {
+      .help {
+        background: url('../assets/images/help.png') no-repeat;
+        background-size: cover;
+        border-radius: 50px;
+        margin: 0 auto;
         width: 50px;
         height: 50px;
-        border-radius: 50px;
-
         color: white;
 
         outline: none;
@@ -207,21 +208,36 @@ export default class Videos extends Vue {
     }
 
     .action-buttons {
+      background: url('../assets/images/buttonwrapper.png') no-repeat;
+      background-size: cover;
+
+      margin: 0 auto;
       margin-top: 50px;
+
       text-align: center;
       display: block;
+      position: relative;
+
+      width: 215px;
+      height: 100px;
 
       .action-button {
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        top: 33px;
         outline: none;
-        border: 0;
-        margin: 0 20px;
+        border: none;
 
-        font-size: 30px;
-        height: 100px;
-        width: 100px;
+        &.delete {
+          left: 30px;
+          background: url('../assets/images/delete.png') no-repeat;
+        }
 
-        border-radius: 50px;
-        background-color: #131313;
+        &.accept {
+          right: 30px;
+          background: url('../assets/images/publish.png') no-repeat;
+        }
       }
     }
   }

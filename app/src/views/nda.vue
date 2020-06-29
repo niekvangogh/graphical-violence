@@ -10,9 +10,9 @@
           <span class="bold">you are prohibited to share any information about the content.</span>
         </p>
       </div>
-    </div>
-    <div class="footer-buttons">
-      <button @click="start">FINISH</button>
+      <div class="footer-buttons">
+        <button @click="start">FINISH</button>
+      </div>
     </div>
   </div>
 </template>
@@ -45,7 +45,7 @@ export default class Index extends Vue {
 
 <style lang="scss" scoped>
 .background {
-  background-image: url('../assets/images/background1.png');
+  background-image: url('../assets/images/background3.png');
   background-size: contain;
   height: 100%;
 }
@@ -80,8 +80,8 @@ export default class Index extends Vue {
     border: 0;
     font-size: 30px;
     font-weight: 700;
-    margin-right: 40px;
     float: right;
+    margin-top: 275px;
   }
 }
 </style>

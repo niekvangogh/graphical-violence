@@ -14,9 +14,9 @@
           the experience.
         </p>
       </div>
-    </div>
-    <div class="footer-buttons">
-      <button @click="start">AGREE</button>
+      <div class="footer-buttons">
+        <button @click="start">AGREE</button>
+      </div>
     </div>
   </div>
 </template>
@@ -86,13 +86,13 @@ export default class Index extends Vue {
 }
 
 .footer-buttons {
+  margin-top: 100px;
   button {
     border-radius: 10px;
     padding: 35px 50px;
     border: 0;
     font-size: 30px;
     font-weight: 700;
-    margin-right: 40px;
     float: right;
   }
 }
