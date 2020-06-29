@@ -143,7 +143,7 @@ export default class Videos extends Vue {
     if (index == 0) {
       return;
     }
-    this.videos = this.videos.splice(+index, +index);
+    this.videos = this.videos.splice(+index - 1, +index);
   }
 
   private mounted() {
