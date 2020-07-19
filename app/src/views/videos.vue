@@ -9,7 +9,7 @@
         <div class="video" v-for="(video, index) in videoQueue" :key="video.id">
           <video
             width="100%"
-            :class="{ 'currently-playing': index === 0, video: video.path }"
+            :class="{ 'currently-playing': index === 0}"
             :src="video.path"
           ></video>
         </div>
@@ -212,8 +212,11 @@ export default class Videos extends Vue {
       position: absolute;
       transition: all 0.3s;
 
-      @for $i from 1 through 20 {
+      display: none; 
+
+      @for $i from 1 through 3 {
         &:nth-child(#{$i}) {
+          display: block;
           $zIndex: 100 - $i;
           $incrementalValue: $i * 20;
           $opacity: 1.2 - ($incrementalValue * 0.01);
