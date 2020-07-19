@@ -284,7 +284,7 @@ export default class Videos extends Vue {
         }
 
         &:disabled {
-          filter: grayscale(1);
+          opacity: 0.3;
         }
       }
     }
