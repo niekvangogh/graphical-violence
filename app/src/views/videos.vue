@@ -12,7 +12,6 @@
             :class="{ 'currently-playing': index === 0, video: video.path }"
             :src="video.path"
           >
-            {{ index }}
           </video>
         </div>
       </div>
@@ -47,16 +46,40 @@ import { Socket } from 'vue-socket.io-extended';
 export default class Videos extends Vue {
   private videos = [
     {
-      path: '/assets/videos/video2.mp4',
-      id: 2,
-    },
-    {
       path: '/assets/videos/video1.mp4',
       id: 1,
     },
     {
+      path: '/assets/videos/video2.mp4',
+      id: 2,
+    },
+    {
       path: '/assets/videos/video3.mp4',
       id: 3,
+    },
+    {
+      path: '/assets/videos/video4.mp4',
+      id: 4,
+    },
+    {
+      path: '/assets/videos/video5.mp4',
+      id: 5,
+    },
+    {
+      path: '/assets/videos/video6.mp4',
+      id: 6,
+    },
+    {
+      path: '/assets/videos/video7.mp4',
+      id: 7,
+    },
+    {
+      path: '/assets/videos/video8.mp4',
+      id: 8,
+    },
+    {
+      path: '/assets/videos/video9.mp4',
+      id: 9,
     },
   ];
 
@@ -143,7 +166,7 @@ export default class Videos extends Vue {
     if (index == 0) {
       return;
     }
-    this.videos = this.videos.splice(+index - 1, +index);
+    this.videos = this.videos.splice(index, +index);
   }
 
   private mounted() {
@@ -176,6 +199,7 @@ export default class Videos extends Vue {
       background-color: #171717;
       height: 15px;
       width: 40%;
+      box-shadow: 0px 40px 6px rgba(47, 47, 47, 0.14);
     }
   }
 
@@ -258,6 +282,10 @@ export default class Videos extends Vue {
         &.accept {
           right: 30px;
           background: url('../assets/images/publish.png') no-repeat;
+        }
+
+        &:disabled {
+          filter: grayscale(1);
         }
       }
     }

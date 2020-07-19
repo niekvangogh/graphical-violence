@@ -71,8 +71,13 @@ export default class Index extends Vue {
     font-weight: 700;
     line-height: 45px;
     margin-bottom: 90px;
+    color: white;
   }
 
+  p {
+    color: #fff8f8;
+  }
+  
   .warning {
     p {
       margin: 30px 0;

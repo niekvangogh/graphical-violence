@@ -187,19 +187,5 @@ p {
 ul {
     padding-left: 40px;
 }
-
-}
-
-.footer-buttons {
-  button {
-    font-family: Monument Extended Regular;
-    border-radius: 10px;
-    padding: 35px 50px;
-    border: 0;
-    font-size: 30px;
-    font-weight: 700;
-    float: right;
-    margin-top: 275px;
-  }
 }
 </style>
