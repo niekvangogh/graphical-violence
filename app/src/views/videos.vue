@@ -60,26 +60,26 @@ export default class Videos extends Vue {
       path: '/assets/videos/video4.mp4',
       id: 4,
     },
-    // {
-    //   path: '/assets/videos/video5.mp4',
-    //   id: 5,
-    // },
-    // {
-    //   path: '/assets/videos/video6.mp4',
-    //   id: 6,
-    // },
-    // {
-    //   path: '/assets/videos/video7.mp4',
-    //   id: 7,
-    // },
-    // {
-    //   path: '/assets/videos/video8.mp4',
-    //   id: 8,
-    // },
-    // {
-    //   path: '/assets/videos/video9.mp4',
-    //   id: 9,
-    // },
+    {
+      path: '/assets/videos/video5.mp4',
+      id: 5,
+    },
+    {
+      path: '/assets/videos/video6.mp4',
+      id: 6,
+    },
+    {
+      path: '/assets/videos/video7.mp4',
+      id: 7,
+    },
+    {
+      path: '/assets/videos/video8.mp4',
+      id: 8,
+    },
+    {
+      path: '/assets/videos/video9.mp4',
+      id: 9,
+    },
   ];
 
   private isVideoPlaying: boolean = false;
@@ -105,7 +105,7 @@ export default class Videos extends Vue {
 
   private finish(publish: boolean) {
     const video: any = this.videos.splice(0, 1)[0];
-    if(this.videos.indexOf(video) === this.videos[this.videos.length - 1]) {
+    if(this.videos.indexOf(video) === this.videos.length - 1) {
       this.$router.push({ name: 'nda' });
       return;
     }
