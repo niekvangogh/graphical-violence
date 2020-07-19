@@ -11,8 +11,7 @@
             width="100%"
             :class="{ 'currently-playing': index === 0, video: video.path }"
             :src="video.path"
-          >
-          </video>
+          ></video>
         </div>
       </div>
 
@@ -89,7 +88,7 @@ export default class Videos extends Vue {
   private progress: number = 0;
 
   private get videoQueue() {
-    return this.videos.slice(0, 3);
+    return this.videos;
   }
 
   private getCurrentVideo(): HTMLVideoElement {
