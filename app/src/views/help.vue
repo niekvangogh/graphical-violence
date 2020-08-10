@@ -148,15 +148,13 @@ export default class Help extends Vue {}
 </script>
 
 <style lang="scss">
-body {
-  background-image: url('../assets/images/background3.png');
-  background-attachment: fixed;
-  background-size: contain;  
-  background-repeat: no-repeat;
-  height: 100%;
-}
 
 .wrapper {
+    background-image: url('../assets/images/background3.png');
+  background-attachment: fixed;
+  background-size: cover;  
+  background-repeat: no-repeat;
+  overflow-y: scroll;
   padding: 40px;
 
   .close {

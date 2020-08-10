@@ -6,6 +6,7 @@
       no-controls
       :src="playingVideo"
       :loop="loop"
+      style="width: 100%;"
     ></video>
   </div>
 </template>
