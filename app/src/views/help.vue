@@ -131,7 +131,8 @@
                     Photos and videos of animals in a ritual slaughter context showing dismemberment, or
                     visible innards, or charring and burning Imagery of visible innards in a birthing context
                     Imagery of non-medical foreign objects voluntarily inserted or stuck inside a human
-                    through skin in religious or cultural context
+                    through skin in religious or cultural context. &#x25A0;
+
                 </p>
             </div>
         </div>
@@ -151,11 +152,11 @@ export default class Help extends Vue {}
 
 .wrapper {
     background-image: url('../assets/images/background3.png');
-  background-attachment: fixed;
-  background-size: cover;  
-  background-repeat: no-repeat;
-  overflow-y: scroll;
-  padding: 40px;
+    background-attachment: fixed;
+    background-size: cover;  
+    background-repeat: no-repeat;
+    overflow-y: scroll;
+    padding: 40px;
 
   .close {
       background-image: url('../assets/images/close.png');

@@ -9,7 +9,7 @@
         <div class="video" v-for="(video, index) in videoQueue" :key="video.id">
           <video
             width="100%"
-            :class="{ 'currently-playing': index === 0}"
+            :class="{ 'currently-playing': index === 0 }"
             :src="video.path"
           ></video>
         </div>
@@ -105,7 +105,11 @@ export default class Videos extends Vue {
 
   private finish(publish: boolean) {
     const video: any = this.videos.splice(0, 1)[0];
-    if(this.videos.indexOf(video) === this.videos.length - 1) {
+    console.log(video.id);
+    
+    if (this.videos.indexOf(video) === this.videos.length - 1) {
+      console.log();
+      
       this.$router.push({ name: 'nda' });
       return;
     }
@@ -183,12 +187,14 @@ export default class Videos extends Vue {
 <style lang="scss" scoped>
 .background {
   background-image: url('../assets/images/background2.png');
-  background-size: contain;
+  background-size: cover;
   height: 100%;
+  width: 100%;
 }
 
 .wrapper {
   padding: 5px 60px;
+  background: none;
 
   .progress-bar {
     background-color: #896d6d;
@@ -216,7 +222,7 @@ export default class Videos extends Vue {
       position: absolute;
       transition: all 0.3s;
 
-      display: none; 
+      display: none;
 
       @for $i from 1 through 3 {
         &:nth-child(#{$i}) {

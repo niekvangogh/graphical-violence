@@ -58,11 +58,14 @@ export default class Index extends Vue {
 <style lang="scss" scoped>
 .background {
   background-image: url('../assets/images/background1.png');
-  background-size: contain;
+  background-size: cover;
+  background-repeat: no-repeat;
   height: 100%;
+  width: 100%;
 }
 
 .wrapper {
+  background: none;
   padding: 130px 100px;
   text-align: center;
 
@@ -77,7 +80,7 @@ export default class Index extends Vue {
   p {
     color: #fff8f8;
   }
-  
+
   .warning {
     p {
       margin: 30px 0;
@@ -94,6 +97,7 @@ export default class Index extends Vue {
   margin-top: 100px;
 
   button {
+    background: white;
     font-family: Monument Extended Regular;
 
     border-radius: 10px;
