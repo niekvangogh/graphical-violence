@@ -110,7 +110,7 @@ export default class Videos extends Vue {
 
   private finish(publish: boolean) {
     const video: any = this.videos.splice(0, 1)[0];
-    if (this.videos.indexOf(video) === this.videos.length - 1) {
+    if (video.id === this.videos.length) {
       this.$router.push({ name: 'nda' });
       return;
     }
@@ -174,7 +174,7 @@ export default class Videos extends Vue {
     if (index == 0) {
       return;
     }
-    this.videos = this.videos.splice(index, +index);
+    this.videos = this.videos.splice(index, this.videos.length - index);
   }
 
   private mounted() {
@@ -223,7 +223,7 @@ export default class Videos extends Vue {
       position: absolute;
       transition: all 0.3s;
 
-      display: none;
+      //display: none;
 
       @for $i from 1 through 3 {
         &:nth-child(#{$i}) {
