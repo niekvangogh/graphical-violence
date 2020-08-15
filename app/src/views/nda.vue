@@ -75,6 +75,8 @@ export default class Index extends Vue {
 .footer-buttons {
   button {
     font-family: Monument Extended Regular;
+    background: white;
+    color: black;
     border-radius: 10px;
     padding: 35px 50px;
     border: 0;
