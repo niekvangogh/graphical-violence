@@ -9,7 +9,7 @@
           <video
             width="100%"
             :class="{ 'currently-playing': index === 0 }"
-            preload="metadata"
+            preload="auto"
             :src="video.path + '#t=0.1'"
             type="video/mp4"
           ></video>
@@ -93,7 +93,7 @@ export default class Videos extends Vue {
   private progress: number = 0;
 
   private get videoQueue() {
-    return this.videos;
+    return this.videos.slice(0, 3);
   }
 
   private getCurrentVideo(): HTMLVideoElement {
@@ -180,6 +180,7 @@ export default class Videos extends Vue {
   private mounted() {
     setTimeout(() => {
       this.playVideo();
+      
     }, 500);
   }
 }
@@ -223,7 +224,7 @@ export default class Videos extends Vue {
       position: absolute;
       transition: all 0.3s;
 
-      //display: none;
+      display: none;
 
       @for $i from 1 through 3 {
         &:nth-child(#{$i}) {
