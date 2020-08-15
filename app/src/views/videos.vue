@@ -110,15 +110,7 @@ export default class Videos extends Vue {
 
   private finish(publish: boolean) {
     const video: any = this.videos.splice(0, 1)[0];
-<<<<<<< HEAD
-    console.log(video.id);
-    
     if (this.videos.indexOf(video) === this.videos.length - 1) {
-      console.log();
-      
-=======
-    if (this.videos.indexOf(video) === this.videos.length - 1) {
->>>>>>> 865005e7abf5c0f2f11c3395913c3d62bc864f0c
       this.$router.push({ name: 'nda' });
       return;
     }
