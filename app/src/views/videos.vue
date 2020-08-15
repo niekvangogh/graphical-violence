@@ -4,20 +4,25 @@
       <div class="progress-bar">
         <div class="indicator" :style="{ width: progress + '%' }"></div>
       </div>
-
       <div class="videos">
         <div class="video" v-for="(video, index) in videoQueue" :key="video.id">
           <video
             width="100%"
             :class="{ 'currently-playing': index === 0 }"
-            :src="video.path"
+            preload="metadata"
+            :src="video.path + '#t=0.1'"
+            type="video/mp4"
           ></video>
         </div>
       </div>
 
       <div class="buttons">
         <div class="help-button">
-          <div class="help" @click="$router.push({ name: 'help' })"></div>
+          <div
+            class="help"
+            :disabled="isVideoPlaying || hasVoted"
+            @click="$router.push({ name: 'help' })"
+          ></div>
         </div>
         <div class="action-buttons">
           <button
@@ -105,11 +110,15 @@ export default class Videos extends Vue {
 
   private finish(publish: boolean) {
     const video: any = this.videos.splice(0, 1)[0];
+<<<<<<< HEAD
     console.log(video.id);
     
     if (this.videos.indexOf(video) === this.videos.length - 1) {
       console.log();
       
+=======
+    if (this.videos.indexOf(video) === this.videos.length - 1) {
+>>>>>>> 865005e7abf5c0f2f11c3395913c3d62bc864f0c
       this.$router.push({ name: 'nda' });
       return;
     }
@@ -249,7 +258,8 @@ export default class Videos extends Vue {
   .buttons {
     .help-button {
       .help {
-        background: url('../assets/images/help.png') no-repeat;
+        background: url('../assets/images/help-light.png') no-repeat;
+
         background-size: cover;
         border-radius: 50px;
         margin: 0 auto;
